@@ -1,14 +1,12 @@
 package agenda;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 /**
  * Teste des événements simples, sans répétition
  */
@@ -27,7 +25,6 @@ public class SimpleEventTest {
     Duration min_89 = Duration.ofMinutes(89);
 
     // Un événement simple
-    // November 1st, 2020, 22:30, 89 minutes
     Event simple = new Event(SIMPLE_EVENT, nov_1_2020_22_30, min_89);
     
     // Un événement qui chevauche 2 jours

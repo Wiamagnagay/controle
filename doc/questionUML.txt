@@ -1,2 +1,23 @@
 Ecrire ici votre réponse à la question UML.
+Solution 2 : Approche par héritage(proposees par l'autre ingenieur )
+la deuxième solution utilise l'héritage pour organiser les événements. On a Event comme classe principale, puis RepetitiveEvent qui hérite d'Event pour gérer les événements qui se répètent, et enfin FixedTerminationEvent qui hérite de RepetitiveEvent pour ajouter les conditions d'arrêt.
+C'est assez facile à comprendre au premier coup d'œil parce que ça suit une logique qu'on a l'habitude de voir : un événement répétitif "est un" événement, et un événement avec terminaison "est un" événement répétitif. 
+On réutilise bien le code des classes parents sans avoir à tout réécrire à chaque fois, ce qui évite les duplications.
+Par contre, cette solution pose quelques problèmes. D'abord, c'est assez rigide : si demain on veut ajouter un nouveau type d'événement qui ne rentre pas bien dans cette hiérarchie, on va devoir tout chambouler. Ensuite, RepetitiveEvent au milieu semble un peu artificielle, 
+comme si elle était là juste pour faire le lien entre Event et FixedTerminationEvent. Et puis avec l'héritage, on se retrouve coincé avec cette structure : on ne peut pas facilement changer ou faire évoluer le modèle sans casser ce qui existe déjà.
+Solution 1 : Approche par composition
+La premiere solution fonctionne différemment : au lieu de faire hériter les classes les unes des autres, elle les sépare complètement. On a Event qui reste simple avec juste les infos de base, puis des classes à part pour Repetition et Termination.
+Un événement peut avoir une répétition ou pas, et une répétition peut avoir une terminaison ou pas. C'est le principe de composition : on assemble des morceaux plutôt que de créer une grande hiérarchie.
+Cette approche est beaucoup plus flexible. 
+Si on veut ajouter un nouveau type de répétition, genre tous les premiers lundis du mois ou quelque chose comme ça, on peut juste modifier ou étendre la classe Repetition sans toucher à Event. Chaque classe fait son propre travail et rien d'autre,
+ ce qui respecte mieux les principes qu'on nous apprend en cours comme le principe de responsabilité unique. C'est aussi plus facile à tester parce qu'on peut tester chaque bout séparément.
+Le problème c'est que c'est plus compliqué à mettre en place et à utiliser. Il y a plus de classes à gérer, et pour avoir toutes les infos sur un événement répétitif, il faut naviguer entre plusieurs objets. Il faut aussi faire attention aux cas bizarres,
+ comme un événement qui aurait une terminaison mais pas de répétition, ce qui n'a pas de sens. Il faut donc ajouter des validations pour éviter ces incohérences.
+Mon avis
+Personnellement, je pense que la premiere solution est meilleur même si elle est plus compliquée au début. En cours on nous répète souvent qu'il vaut mieux utiliser la composition que l'héritage quand c'est possible, et là on voit pourquoi. Si l'application d'agenda doit évoluer avec de nouvelles fonctionnalités,
+la composition nous laisse beaucoup plus de liberté. On peut ajouter des trucs sans tout casser.
+La deuxième solution serait acceptable pour un petit projet ou un TP où on sait exactement ce qu'on doit faire et que ça ne changera pas.
+Mais pour un vrai projet qui va vivre et évoluer, la composition est plus adaptée même si ça demande un peu plus de travail au départ. 
+C'est un investissement qui vaut le coup sur le long terme.
+
 
